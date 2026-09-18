@@ -331,9 +331,9 @@ const unsubscribe = posthog.onActiveMatchingSurveysChanged((surveys, context) =>
   renderSurveys(surveys)
 })
 
-// Call this when the component or view is removed.
-unsubscribe()
 ```
+
+Call `unsubscribe()` when the component or view no longer needs survey updates.
 
 The subscription sends its initial result when it is available, suppresses unchanged results, and stays active after recoverable load errors. A successful empty result has `context.isLoaded === true`. A load failure has `context.isLoaded === false` and an `error` value.
 
@@ -349,7 +349,7 @@ For single-page apps, set `capture_pageview: "history_change"` to let route chan
 
 The subscription does not watch arbitrary DOM mutations or the passage of time. Selector, device, and wait-period conditions are re-evaluated when one of the supported updates above occurs.
 
-If you use `displaySurvey()` with `ignoreConditions: false`, continue to wait for feature flags before calling it when its display conditions depend on flags. `onActiveMatchingSurveysChanged()` keeps custom API-survey UIs in sync; it does not control `displaySurvey()`.
+If you use `displaySurvey()` with `ignoreConditions: false`, continue to wait for feature flags before calling it when its display conditions depend on flags. `onActiveMatchingSurveysChanged()` keeps custom API survey UIs in sync; it does not control `displaySurvey()`.
 
 ### Example: a dynamic feedback form
 
